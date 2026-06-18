@@ -1,0 +1,54 @@
+Watching for file changes with StatReloader
+[17/Jun/2026 01:12:23] "GET / HTTP/1.1" 302 0
+[17/Jun/2026 01:12:23] "GET /students/ HTTP/1.1" 200 6662
+[17/Jun/2026 01:12:23] "GET /static/css/style.css HTTP/1.1" 200 322
+[17/Jun/2026 01:15:00] "GET /students/ HTTP/1.1" 200 6662
+[17/Jun/2026 01:15:02] "GET /students/about/ HTTP/1.1" 200 3258
+[17/Jun/2026 01:15:17] "GET /students/about/ HTTP/1.1" 200 3258
+[17/Jun/2026 01:15:19] "GET /students/search/ HTTP/1.1" 200 2171
+[17/Jun/2026 01:15:21] "GET /students/feedback/ HTTP/1.1" 200 3402
+[17/Jun/2026 01:15:22] "GET /students/search/ HTTP/1.1" 200 2171
+[17/Jun/2026 01:15:23] "GET /students/about/ HTTP/1.1" 200 3258
+[17/Jun/2026 01:15:24] "GET /students/ HTTP/1.1" 200 6662
+[17/Jun/2026 01:15:45] "GET /students/ HTTP/1.1" 200 6662
+[17/Jun/2026 01:17:16] "GET / HTTP/1.1" 302 0
+[17/Jun/2026 01:17:16] "GET /students/ HTTP/1.1" 200 6662
+[17/Jun/2026 01:17:16,696] - Broken pipe from ('127.0.0.1', 61492)
+[17/Jun/2026 01:17:20] "GET /students/ HTTP/1.1" 200 6662
+[17/Jun/2026 01:17:20,740] - Broken pipe from ('127.0.0.1', 61493)
+[17/Jun/2026 01:17:21] "GET /students/101/ HTTP/1.1" 200 2933
+[17/Jun/2026 01:17:21,116] - Broken pipe from ('127.0.0.1', 61494)
+[17/Jun/2026 01:17:21] "GET /students/about/ HTTP/1.1" 200 3258
+[17/Jun/2026 01:17:21,329] - Broken pipe from ('127.0.0.1', 61495)
+[17/Jun/2026 01:19:16] "GET / HTTP/1.1" 302 0
+[17/Jun/2026 01:19:16] "GET /students/ HTTP/1.1" 200 6662
+[17/Jun/2026 01:19:27] "GET /students/ HTTP/1.1" 200 6662
+[17/Jun/2026 01:19:29] "GET /students/about/ HTTP/1.1" 200 3258
+[17/Jun/2026 01:19:30] "GET /students/ HTTP/1.1" 200 6662
+[17/Jun/2026 01:19:31] "GET /students/ HTTP/1.1" 200 6662
+[17/Jun/2026 01:19:32] "GET /students/ HTTP/1.1" 200 6662
+[17/Jun/2026 01:19:33] "GET /students/about/ HTTP/1.1" 200 3258
+[17/Jun/2026 01:19:34] "GET /students/search/ HTTP/1.1" 200 2171
+[17/Jun/2026 01:19:35] "GET /students/feedback/ HTTP/1.1" 200 3402
+[17/Jun/2026 01:19:37] "GET /students/search/ HTTP/1.1" 200 2171
+[17/Jun/2026 01:19:37] "GET /students/about/ HTTP/1.1" 200 3258
+[17/Jun/2026 01:19:38] "GET /students/ HTTP/1.1" 200 6662
+[17/Jun/2026 01:21:27] "GET /students/search/?q=asha HTTP/1.1" 200 2918
+[17/Jun/2026 01:21:27,712] - Broken pipe from ('127.0.0.1', 61504)
+[17/Jun/2026 01:21:28] "GET /students/feedback/ HTTP/1.1" 200 3402
+[17/Jun/2026 01:21:28,219] - Broken pipe from ('127.0.0.1', 61505)
+[17/Jun/2026 01:21:28] "GET /students/register/ HTTP/1.1" 200 4747
+[17/Jun/2026 01:21:28,648] - Broken pipe from ('127.0.0.1', 61507)
+[17/Jun/2026 01:21:34] "GET /students/add/ HTTP/1.1" 302 0
+[17/Jun/2026 01:21:34] "GET /accounts/login/?next=/students/add/ HTTP/1.1" 200 3241
+[17/Jun/2026 01:21:34,937] - Broken pipe from ('127.0.0.1', 61508)
+Not Found: /students/nonexistent/
+[17/Jun/2026 01:21:35] "GET /students/nonexistent/ HTTP/1.1" 404 4399
+[17/Jun/2026 01:21:35] "GET /admin/ HTTP/1.1" 302 0
+[17/Jun/2026 01:21:35,769] - Broken pipe from ('127.0.0.1', 61509)
+[17/Jun/2026 01:21:35] "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4080
+[17/Jun/2026 01:21:35,980] - Broken pipe from ('127.0.0.1', 61510)
+C:\shafeeka\notes\campushub\students\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\shafeeka\notes\campushub\students\views.py changed, reloading.
+Watching for file changes with StatReloader

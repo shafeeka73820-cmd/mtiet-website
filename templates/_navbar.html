@@ -1,0 +1,48 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'students:index' %}">
+            <img src="{% static 'images/logo.svg' %}" alt="CampusHub" width="32" height="32" style="background:rgba(255,255,255,0.2);border-radius:8px;padding:4px;">
+            CampusHub
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'students:index' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'students:about' %}">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'students:search' %}">Search</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'students:stats' %}">Stats</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'students:feedback' %}">Feedback</a></li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'students:add' %}">Add Student</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'students:admin_dashboard' %}">Admin</a></li>
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav">
+                {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-light" href="#" data-bs-toggle="dropdown">
+                            Hi, {{ user.username }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="{% url 'students:profile' %}">Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <form method="post" action="{% url 'logout' %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="dropdown-item">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'students:register' %}">Register</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
