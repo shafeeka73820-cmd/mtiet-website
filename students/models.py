@@ -5,7 +5,9 @@ from django.contrib.auth.models import User
 
 class Department(models.Model):
     name = models.CharField(max_length=50, unique=True)
-    code = models.CharField(max_length=5, unique=True)
+    code = models.CharField(max_length=10, unique=True)
+    description = models.TextField(blank=True, default='')
+    image_url = models.URLField(blank=True, default='')
 
     class Meta:
         ordering = ['name']
@@ -63,7 +65,14 @@ class Student(models.Model):
         Department, on_delete=models.SET_NULL,
         null=True, blank=True, related_name='students'
     )
+    attendance = models.IntegerField(default=75, help_text="Attendance percentage (0-100)")
+    total_fees = models.DecimalField(max_digits=10, decimal_places=2, default=50000)
+    paid_fees = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     is_active = models.BooleanField(default=True)
+    created_by = models.ForeignKey(
+        User, on_delete=models.SET_NULL,
+        null=True, blank=True, related_name='created_students'
+    )
 
     class Meta:
         ordering = ['roll']

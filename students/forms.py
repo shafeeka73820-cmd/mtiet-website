@@ -8,13 +8,16 @@ import re
 class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
-        fields = ['name', 'roll', 'email', 'branch', 'marks', 'phone', 'photo']
+        fields = ['name', 'roll', 'email', 'branch', 'marks', 'attendance', 'total_fees', 'paid_fees', 'phone', 'photo']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'roll': forms.NumberInput(attrs={'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'branch': forms.Select(attrs={'class': 'form-select'}),
             'marks': forms.NumberInput(attrs={'class': 'form-control'}),
+            'attendance': forms.NumberInput(attrs={'class': 'form-control'}),
+            'total_fees': forms.NumberInput(attrs={'class': 'form-control'}),
+            'paid_fees': forms.NumberInput(attrs={'class': 'form-control'}),
             'phone': forms.TextInput(attrs={'class': 'form-control'}),
             'photo': forms.FileInput(attrs={'class': 'form-control'}),
         }
@@ -91,8 +94,6 @@ class AdminDepartmentForm(forms.ModelForm):
 
     def clean_code(self):
         code = self.cleaned_data.get('code', '')
-        if code and not code.isupper():
-            raise forms.ValidationError("Department code must be uppercase (e.g. CSE, ECE).")
         if code and len(code) < 2:
             raise forms.ValidationError("Code must be at least 2 characters.")
         return code

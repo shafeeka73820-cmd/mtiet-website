@@ -10,17 +10,78 @@ from .forms import StudentForm, FeedbackForm, RegisterForm, AdminDepartmentForm,
 
 def index(request):
     students = Student.objects.all()
+    departments = Department.objects.annotate(
+        strength=Count('students', distinct=True),
+        avg_marks=Avg('students__marks'),
+    )
+    toppers = students.order_by('-marks')[:5]
+    branch_data = students.values('branch').annotate(count=Count('id')).order_by('branch')
+    grade_a = students.filter(marks__gte=75).count()
+    grade_b = students.filter(marks__gte=60, marks__lt=75).count()
+    grade_c = students.filter(marks__gte=40, marks__lt=60).count()
+    grade_f = students.filter(marks__lt=40).count()
+    attendance_high = students.filter(attendance__gte=85).count()
+    attendance_mid = students.filter(attendance__gte=75, attendance__lt=85).count()
+    attendance_low = students.filter(attendance__lt=75).count()
     context = {
         "students": students,
         "count": len(students),
         "dept_count": Department.objects.count(),
+        "departments": departments,
+        "toppers": toppers,
+        "top_student": students.order_by('-marks').first(),
+        "avg_attendance": students.aggregate(Avg('attendance'))['attendance__avg'] or 0,
+        "attendance_high": attendance_high,
+        "attendance_mid": attendance_mid,
+        "attendance_low": attendance_low,
+        "branch_data": branch_data,
+        "grade_a": grade_a,
+        "grade_b": grade_b,
+        "grade_c": grade_c,
+        "grade_f": grade_f,
         "title": "Student Portal",
     }
     return render(request, 'students/index.html', context)
 
+def departments(request):
+    depts = Department.objects.annotate(
+        strength=Count('students', distinct=True),
+        avg_marks=Avg('students__marks'),
+    )
+    return render(request, 'students/departments.html', {"departments": depts})
+
+def department_detail(request, code):
+    dept = get_object_or_404(Department.objects.annotate(
+        strength=Count('students', distinct=True),
+        avg_marks=Avg('students__marks'),
+    ), code=code.upper())
+    students = dept.students.all().order_by('-marks')[:10]
+    return render(request, 'students/department_detail.html', {
+        "dept": dept,
+        "students": students,
+    })
+
 def detail(request, roll):
     student = get_object_or_404(Student, roll=roll)
     return render(request, 'students/detail.html', {"student": student})
+
+def placements(request):
+    companies = ["TCS", "Cognizant", "Infosys", "Capgemini", "Altimetrik", "Mphasis",
+                 "Tech Mahindra", "Wipro", "Hexaware", "Mind Tree", "SecureW2", "Planet Spark"]
+    context = {
+        "title": "Placements | MTIET",
+        "companies": companies,
+    }
+    return render(request, 'students/placements.html', context)
+
+def gallery(request):
+    context = {
+        "title": "Gallery | MTIET",
+    }
+    return render(request, 'students/gallery.html', context)
+
+def contact(request):
+    return render(request, 'students/contact.html', {"title": "Contact | MTIET"})
 
 def about(request):
     import django
